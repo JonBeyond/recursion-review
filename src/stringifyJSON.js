@@ -34,7 +34,14 @@ var stringifyJSON = function(obj) {
       return stringObj;
     }
     
+    //add string
+    if (typeof obj === 'string' ) {
+      return jsonString += '"' + obj + '"';
+    }
     
+    if (typeof obj === 'boolean' ) {
+      return obj ? 'true' : 'false';
+    }
     
   }
   /*
