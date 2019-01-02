@@ -27,8 +27,8 @@ var stringifyJSON = function(obj) {
     jsonString += '}';
     return jsonString;
   } else {
-    let stringObj = obj.toString();
     
+    let stringObj = obj.toString();
     //add number
     if (stringObj[0] === '-' || stringObj[0] >= 0 || stringObj[0] >= 9) {
       return stringObj;
@@ -43,24 +43,18 @@ var stringifyJSON = function(obj) {
       return obj ? 'true' : 'false';
     }
     
+    if (obj === null) {
+      return 'null';      
+    }
+    if (obj === undefined || typeof obj === "function") {
+      return '';
+    }
+    console.log("not found (err)");
+    return "error";
   }
   /*
-number: can start with 0 to 9 or a - (negative)
-string: will start with " and end with a 
-null: 
-boolean: true / false 
 function: 
 undefined
-
-
 */
-
-
-
-  //case if obj is an objec
-
-
-
-  //case if obj is a primitive : null, num, string 
 };
 
