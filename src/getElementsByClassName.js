@@ -5,33 +5,18 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className, prenode) {
-  let node = prenode || body.document;
+  let node = prenode || document.body;
   let elementCollection = [];
 
-  if (node.classList.contains(className)) {
-    //do a thing. add to master object
+  if (node.classList && node.classList.contains(className)) {
     elementCollection.push(node);
   }
-  if (node.childNodes) {
-    //dive deeper
-//look more into child nodes
-// then figure out how to determine if it exists
-    getElementsByClassName(className, node.childNodes() );
+
+  if (node.hasChildNodes()) {
+    
+    for (let i = 0; i < node.childNodes.length; i++) {
+      elementCollection = elementCollection.concat(getElementsByClassName(className, node.childNodes[i]));
+    }
   }
-  // check node contains className
-  // -> check if node contains child getElements
-  // --> recall recursively node.childNodes()
-  
-  
-  
+  return elementCollection;
 };
-
-/*
-Useful methods:
-
-node.classList.contains()
-
-
-
-
-*/
